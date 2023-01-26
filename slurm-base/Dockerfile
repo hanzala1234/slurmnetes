@@ -23,7 +23,7 @@ RUN wget https://releases.hashicorp.com/consul/${CONSUL_VER}/consul_${CONSUL_VER
 
 
 #RUN apt-get install -y  slurm-wlm && \
-RUN  pip install clustershell networkx matplotlib pygraphviz
+RUN  pip install clustershell networkx==2.2 matplotlib==2.2.4 pygraphviz==0.99.1 PyYaml==3.12
 
 RUN curl -fsL https://download.schedmd.com/slurm/slurm-${SLURM_VER}.tar.bz2 | tar xfj - -C /opt/ && \
     cd /opt/slurm-${SLURM_VER}/ && \
