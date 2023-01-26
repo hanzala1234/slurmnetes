@@ -1,24 +1,24 @@
 #!/bin/bash
 
-CLUSTER=$(minikube status)
-STATUS=$?
-if [ "$STATUS" -lt 1 ]; then
-  echo "Existing minikube detected.";
-  minikube delete
-else
-  echo "Starting fresh!";
-fi
+# CLUSTER=$(minikube status)
+# STATUS=$?
+# if [ "$STATUS" -lt 1 ]; then
+#   echo "Existing minikube detected.";
+#   minikube delete
+# else
+#   echo "Starting fresh!";
+# fi
 
-minikube start --memory 8192
+# minikube start --memory 8192
 
-helm init; kubectl rollout status -w deployment/tiller-deploy --namespace=kube-system;
-sleep 10;
+# helm init; kubectl rollout status -w deployment/tiller-deploy --namespace=kube-system;
+# sleep 10;
 
-pwd=$(pwd)
+# pwd=$(pwd)
 
-minikube ssh "cd ${pwd} && ./bin/build.sh"
-
-helm install --namespace "kube-system" -n "kubernetes" stable/prometheus --set server.service.type=NodePort
+# minikube ssh "cd ${pwd} && ./bin/build.sh"
+helm repo add stable https://charts.helm.sh/stable
+helm install --namespace "kube-system" bitnami/prometheus --set server.service.type=NodePort
 
 kubectl apply -f infrastructure/grafana-configmap.yaml
 kubectl apply -f infrastructure/grafana-deployment.yaml
