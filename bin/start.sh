@@ -18,7 +18,7 @@
 
 # minikube ssh "cd ${pwd} && ./bin/build.sh"
 helm repo add prometheus https://prometheus-community.github.io/helm-charts
-helm install prometheus --namespace "kube-system" stable/prometheus --set server.service.type=NodePort
+helm install prometheus --namespace "kube-system" prometheus/prometheus --set server.service.type=NodePort
 
 kubectl apply -f infrastructure/grafana-configmap.yaml
 kubectl apply -f infrastructure/grafana-deployment.yaml
