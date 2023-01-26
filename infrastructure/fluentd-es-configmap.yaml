@@ -369,5 +369,4 @@ data:
 metadata:
   name: fluentd-es-config-v0.1.1
   namespace: kube-system
-  labels:
-    addonmanager.kubernetes.io/mode: Reconcile
+
