@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: kibana-logging
-        image: kibana:latest
+        image: bitnami/kibana:latest
         resources:
           # need more cpu upon initialization, therefore burstable class
           limits:
@@ -25,7 +25,7 @@ spec:
           requests:
             cpu: 100m
         env:
-          - name: ELASTICSEARCH_URL
+          - name: KIBANA_ELASTICSEARCH_URL
             value: http://elasticsearch-logging:9200
         ports:
         - containerPort: 5601
