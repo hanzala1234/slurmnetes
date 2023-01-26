@@ -6,6 +6,9 @@ metadata:
     io.slurm.service: slurmctld
   name: slurmctld
 spec:
+  selector:
+    matchLabels:
+       io.slurm.service: slurmctld
   replicas: 1
   strategy: {}
   template:

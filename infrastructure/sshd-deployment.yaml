@@ -8,6 +8,9 @@ metadata:
 spec:
   replicas: 2
   strategy: {}
+  selector:
+    matchLabels:
+      io.slurm.service: sshd
   template:
     metadata:
       creationTimestamp: null

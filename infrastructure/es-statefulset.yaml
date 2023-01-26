@@ -47,7 +47,7 @@ roleRef:
   apiGroup: ""
 ---
 # Elasticsearch deployment itself
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: elasticsearch-logging
@@ -59,7 +59,7 @@ metadata:
     addonmanager.kubernetes.io/mode: Reconcile
 spec:
   serviceName: elasticsearch-logging
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       k8s-app: elasticsearch-logging
