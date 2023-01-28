@@ -1,7 +1,7 @@
 # Slurm Base image
 FROM ubuntu:xenial
 
-ENV SLURM_VER=17.11.0
+ENV SLURM_VER=20.11.9
 ENV CONSUL_VER=1.0.1
 ENV CONSUL_T_VER=0.19.4
 ENV LD_LIBRARY_PATH=/usr/local/lib/
@@ -25,9 +25,8 @@ RUN wget https://releases.hashicorp.com/consul/${CONSUL_VER}/consul_${CONSUL_VER
 #RUN apt-get install -y  slurm-wlm && \
 RUN  pip install clustershell networkx==2.2 matplotlib==2.2.4 pygraphviz==1.3.1 pyyaml==5.3 decorator==3.3.2 pyparsing==2.2.0 kiwisolver==1.0.1 numpy==1.13.0
 
-
-RUN curl -fsL https://download.schedmd.com/slurm/slurm-${SLURM_VER}.tar.bz2 | tar xfj - -C /opt/ && \
-    cd /opt/slurm-${SLURM_VER}/ && \
+RUN curl -fsL https://github.com/SchedMD/slurm/archive/refs/tags/slurm-17-11-3-1.tar.gz | tar xvzf - -C /opt/ && \
+    cd /opt/slurm-*/ && \
     ./configure && make && make install
 
 RUN useradd -u 2001 -d /home/slurm slurm && \
