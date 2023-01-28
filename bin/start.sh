@@ -1,22 +1,21 @@
 #!/bin/bash
 
-# CLUSTER=$(minikube status)
-# STATUS=$?
-# if [ "$STATUS" -lt 1 ]; then
-#   echo "Existing minikube detected.";
-#   minikube delete
-# else
-#   echo "Starting fresh!";
-# fi
+CLUSTER=$(minikube status)
+STATUS=$?
+if [ "$STATUS" -lt 1 ]; then
+  echo "Existing minikube detected.";
+  minikube delete
+else
+  echo "Starting fresh!";
+fi
 
-# minikube start --memory 8192
+minikube start --memory 8192
 
-# helm init; kubectl rollout status -w deployment/tiller-deploy --namespace=kube-system;
-# sleep 10;
 
-# pwd=$(pwd)
 
-# minikube ssh "cd ${pwd} && ./bin/build.sh"
+pwd=$(pwd)
+
+minikube ssh "cd ${pwd} && ./bin/build.sh"
 helm repo add prometheus https://prometheus-community.github.io/helm-charts
 helm install prometheus --namespace "kube-system" prometheus/prometheus --set server.service.type=NodePort
 
